@@ -13,13 +13,8 @@ Example of using `ModalProgressIndicator`:
 ```dart
 ModalProgressIndicator(
   visible: true,
-  dismissible: true,
-  onDismiss: () {},
-  indicator: const CircularProgressIndicator(
-    color: Colors.white,
-  ),
-  alignment: Alignment.topCenter,
-  options: const BackgroundOptions(
+  indicator: CircularProgressIndicator(),
+  options: BackgroundOptions(
     color: Colors.black,
     opacity: 0.5,
     blurEffect: BlurEffect(

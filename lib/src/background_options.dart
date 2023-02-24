@@ -1,34 +1,24 @@
 import 'dart:ui';
 
 /// {@template background_options}
-/// Options describing how to display the background.
+/// Options describing how to paint the background.
 /// {@endtemplate}
 class BackgroundOptions {
   /// {@macro background_options}
   const BackgroundOptions({
     this.color,
-    this.opacity = 1,
+    this.opacity,
     this.blurEffect,
   });
 
-  /// If non-null, fill the background with this color.
+  /// If non-null, fill the background with the [color].
   final Color? color;
 
-  /// The fraction to scale the alpha value of the background's [color].
-  ///
-  /// Defaults to 1.
-  final double opacity;
+  /// If non-null, apply the [opacity] for the background's [color].
+  final double? opacity;
 
   /// If non-null, apply blur effect to the background.
   final BlurEffect? blurEffect;
-
-  @override
-  String toString() {
-    return 'BackgroundOptions{'
-        'color: $color, '
-        'opacity: $opacity, '
-        'blurEffect: $blurEffect}';
-  }
 }
 
 /// {@template blur_effect}
@@ -65,13 +55,5 @@ class BlurEffect {
       sigmaY: sigmaY,
       tileMode: tileMode,
     );
-  }
-
-  @override
-  String toString() {
-    return 'BlurEffect{'
-        'sigmaX: $sigmaX, '
-        'sigmaY: $sigmaY, '
-        'tileMode: $tileMode}';
   }
 }

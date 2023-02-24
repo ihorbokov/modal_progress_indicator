@@ -2,7 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:modal_progress_indicator/src/background_options.dart';
 
 /// {@template modal_progress_indicator}
-/// A modal progress indicator that blocks access to widgets while it's visible.
+/// Creates a modal progress indicator that blocks access to a wrapped widget
+/// and its subtree.
 ///
 /// The [indicator] can be any widget.
 /// Use [options] in order to customise background.
@@ -11,6 +12,7 @@ class ModalProgressIndicator extends StatelessWidget {
   /// {@macro modal_progress_indicator}
   const ModalProgressIndicator({
     required this.visible,
+    required this.child,
     this.indicator,
     this.alignment = Alignment.center,
     this.dismissible = false,
@@ -41,22 +43,22 @@ class ModalProgressIndicator extends StatelessWidget {
   /// If non-null, the style to use for the background.
   final BackgroundOptions? options;
 
+  /// The widget below this widget in the tree.
+  final Widget child;
+
   @override
   Widget build(BuildContext context) {
+    Widget? background;
+    Widget? foreground;
     if (visible) {
-      final foreground = Align(
-        alignment: alignment,
-        child: indicator,
-      );
-
-      Widget background = ModalBarrier(
+      background = ModalBarrier(
         color: options?.color,
         dismissible: dismissible,
         onDismiss: onDismiss,
       );
-      if (options != null && options!.opacity != 1) {
+      if (options?.opacity != null) {
         background = Opacity(
-          opacity: options!.opacity,
+          opacity: options!.opacity!,
           child: background,
         );
       }
@@ -66,14 +68,19 @@ class ModalProgressIndicator extends StatelessWidget {
           child: background,
         );
       }
-      return Stack(
-        children: [
-          background,
-          foreground,
-        ],
-      );
-    } else {
-      return const SizedBox.shrink();
+      if (indicator != null) {
+        foreground = Align(
+          alignment: alignment,
+          child: indicator,
+        );
+      }
     }
+    return Stack(
+      children: [
+        child,
+        if (background != null) background,
+        if (foreground != null) foreground,
+      ],
+    );
   }
 }

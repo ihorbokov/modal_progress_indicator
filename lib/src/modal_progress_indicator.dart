@@ -24,13 +24,16 @@ class ModalProgressIndicator extends StatelessWidget {
   /// Switches between showing the [indicator] or hiding it.
   final bool visible;
 
+  /// The widget below this widget in the tree.
+  final Widget child;
+
+  /// A progress indicator.
+  final Widget? indicator;
+
   /// Defines how to align the [indicator].
   ///
   /// Defaults to [Alignment.center].
   final AlignmentGeometry alignment;
-
-  /// A progress indicator.
-  final Widget? indicator;
 
   /// {@macro flutter.widgets.modalBarrier.dismissible}
   ///
@@ -42,9 +45,6 @@ class ModalProgressIndicator extends StatelessWidget {
 
   /// If non-null, the style to use for the background.
   final BackgroundOptions? options;
-
-  /// The widget below this widget in the tree.
-  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +68,14 @@ class ModalProgressIndicator extends StatelessWidget {
           child: background,
         );
       }
+      if (options?.borderClipper != null) {
+        background = ClipRRect(
+          borderRadius: options!.borderClipper!.borderRadius,
+          clipper: options!.borderClipper?.clipper,
+          clipBehavior: options!.borderClipper!.clipBehavior,
+          child: background,
+        );
+      }
       if (indicator != null) {
         foreground = Align(
           alignment: alignment,
@@ -78,8 +86,14 @@ class ModalProgressIndicator extends StatelessWidget {
     return Stack(
       children: [
         child,
-        if (background != null) background,
-        if (foreground != null) foreground,
+        if (background != null)
+          Positioned.fill(
+            child: background,
+          ),
+        if (foreground != null)
+          Positioned.fill(
+            child: foreground,
+          ),
       ],
     );
   }

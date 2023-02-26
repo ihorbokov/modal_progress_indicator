@@ -1,6 +1,6 @@
 name: modal_progress_indicator
 description: Configurable modal progress indicator that blocks access to a wrapped widget and its subtree.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/phimary/modal_progress_indicator
 
 environment:

@@ -1,3 +1,7 @@
+# 1.0.2
+
+- Updated analysis library.
+
 # 1.0.1
 
 - Added `BorderClipper` to `BackgroundOptions`.

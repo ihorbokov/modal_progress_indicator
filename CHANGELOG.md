@@ -1,11 +1,15 @@
+# 1.0.3
+
+Updated dependencies.
+
 # 1.0.2
 
-- Updated analysis library.
+Updated analysis library.
 
 # 1.0.1
 
-- Added `BorderClipper` to `BackgroundOptions`.
+Added `BorderClipper` to `BackgroundOptions`.
 
 # 1.0.0
 
-- Configurable modal progress indicator that blocks access to a wrapped widget and its subtree.
+Configurable modal progress indicator that blocks access to a wrapped widget and its subtree.

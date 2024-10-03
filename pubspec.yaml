@@ -1,7 +1,7 @@
 name: modal_progress_indicator
 description: Configurable modal progress indicator that blocks access to a wrapped widget and its subtree.
-version: 1.0.2
-homepage: https://github.com/phimary/modal_progress_indicator
+version: 1.0.3
+homepage: https://github.com/ihorbokov/modal_progress_indicator
 
 environment:
   sdk: '>=2.12.0 <4.0.0'
@@ -13,4 +13,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^5.1.0
+  very_good_analysis: ^6.0.0
